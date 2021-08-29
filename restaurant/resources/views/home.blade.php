@@ -85,14 +85,43 @@ https://templatemo.com/tm-558-klassy-cafe
                             </li>
                             <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
                             <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li>
-                        </ul>
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
-                        <!-- ***** Menu End ***** -->
-                    </nav>
+                            <li>
+
+
+
+
+                                @if (Route::has('login'))
+                                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                                        @auth
+                                <li>
+
+                                    <x-app-layout>
+
+                                    </x-app-layout>
+
+                                </li>
+                            @else
+                                <li> <a href="{{ route('login') }}" class="text-sm text-gray-700 un  derline">Log
+                                        in</a></li>
+
+                                @if (Route::has('register'))
+                                    <li> <a href="{{ route('register') }}"
+                                            class="ml-4 text-sm text-gray-700 underline">Register</a></li>
+                                @endif
+                            @endauth
                 </div>
+                @endif
+
+                </li>
+
+                </ul>
+                <a class='menu-trigger'>
+                    <span>Menu</span>
+                </a>
+                <!-- ***** Menu End ***** -->
+                </nav>
             </div>
+        </div>
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
@@ -159,7 +188,8 @@ https://templatemo.com/tm-558-klassy-cafe
                             framework. You can download and feel free to use this website template layout for your
                             restaurant business. You are allowed to use this template for commercial purposes.
                             <br><br>You are NOT allowed to redistribute the template ZIP file on any template donwnload
-                            website. Please contact us for more information.</p>
+                            website. Please contact us for more information.
+                        </p>
                         <div class="row">
                             <div class="col-4">
                                 <img src="assets/images/about-thumb-01.jpg" alt="">
