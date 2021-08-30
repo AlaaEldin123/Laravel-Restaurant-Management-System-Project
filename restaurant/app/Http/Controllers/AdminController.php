@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Food;
+use App\Models\Foodchef;
 use App\Models\Reservation;
 use App\Models\User;
 use Dotenv\Loader\Resolver;
@@ -14,6 +15,7 @@ class AdminController extends Controller
     public function user()
     {
         $data = User::all();
+
         return view('admin.users', compact('data'));
     }
 
@@ -104,5 +106,25 @@ class AdminController extends Controller
     {
         $data = Reservation::all();
         return view('admin.adminreservation', compact('data'));
+    }
+
+    //view chef
+    public function viewchef()
+    {
+        return view('admin.adminchef');
+    }
+
+    public function updatechef(Request $request)
+    {
+        $data = new Foodchef;
+        $image = $request->image;
+        $imagename = time() . '.' . $image->getClientOriginalExtension();
+        $request->image->move('chefimage', $imagename);
+
+        $data->image = $imagename;
+        $data->name = $request->name;
+        $data->speciality = $request->speciality;
+        $data->save();
+        return redirect()->back();
     }
 }

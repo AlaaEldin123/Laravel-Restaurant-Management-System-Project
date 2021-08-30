@@ -43,3 +43,7 @@ Route::post('/update/{id}', [AdminController::class, 'update']);
 Route::post('/reservation', [AdminController::class, 'reservation']);
 
 Route::get('/viewreservation', [AdminController::class, 'viewreservation']);
+
+Route::get('/viewchef', [AdminController::class, 'viewchef']);
+
+Route::post('/updatechef', [AdminController::class, 'updatechef']);
