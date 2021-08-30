@@ -111,10 +111,12 @@ class AdminController extends Controller
     //view chef
     public function viewchef()
     {
-        return view('admin.adminchef');
+        $data = Foodchef::all();
+        return view('admin.adminchef', compact('data'));
     }
 
-    public function updatechef(Request $request)
+    // create new chef
+    public function uploadchef(Request $request)
     {
         $data = new Foodchef;
         $image = $request->image;
@@ -125,6 +127,40 @@ class AdminController extends Controller
         $data->name = $request->name;
         $data->speciality = $request->speciality;
         $data->save();
+        return redirect()->back();
+    }
+
+    // get chef and redirect it
+    public function updatechef($id)
+    {
+        $data = Foodchef::find($id);
+
+        return view('admin.updatechef', compact('data'));
+    }
+
+    // update chef
+    public function updatefoodchef(Request $request, $id)
+    {
+        $data = Foodchef::find($id);
+        $image = $request->image;
+        if ($image) {
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('chefimage', $imagename);
+            $data->image = $imagename;
+        }
+
+
+        $data->name = $request->name;
+        $data->speciality = $request->speciality;
+        $data->save();
+        return redirect()->route('viewchef');
+    }
+
+    // delete chef
+    public function deletechef($id)
+    {
+        $data = Foodchef::findOrFail($id);
+        $data->delete();
         return redirect()->back();
     }
 }
