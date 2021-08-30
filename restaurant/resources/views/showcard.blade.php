@@ -169,30 +169,39 @@ https://templatemo.com/tm-558-klassy-cafe
                             </thead>
                             <hr>
                             <tbody>
-
-                                @foreach ($data as $data)
-
-
-                                    <tr>
-                                        <td scope="row">{{ $data->title }}</td>
-                                        <td>{{ $data->price }}</td>
-
-                                        <td>{{ $data->quanity }}</td>
+                                <form method="post" action="{{ url('/orderconfirm') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    @foreach ($data as $data)
 
 
+                                        <tr>
+                                            <td scope="row">
+                                                <input name="foodname[]" type="text" value=" {{ $data->title }}"
+                                                    hidden="">
+                                                {{ $data->title }}
+                                            </td>
+                                            <td> <input name="price[]" type="text" value=" {{ $data->price }}"
+                                                    hidden="">
 
-                                    </tr>
+                                                {{ $data->price }}</td>
+
+                                            <td><input name="quantity[]" type="text" value=" {{ $data->quanity }}"
+                                                    hidden="">{{ $data->quanity }}</td>
 
 
-                                @endforeach
 
-                                @foreach ($data2 as $data2)
-                                    <tr style="position: relative; top:-76px; left:850px">
-                                        <td><a href="{{ url('/remove', $data2->id) }}"
-                                                class="btn btn-danger">Remove</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                        </tr>
+
+
+                                    @endforeach
+
+                                    @foreach ($data2 as $data2)
+                                        <tr style="position: relative; top:-76px; left:850px">
+                                            <td><a href="{{ url('/remove', $data2->id) }}"
+                                                    class="btn btn-danger">Remove</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
 
 
@@ -222,26 +231,25 @@ https://templatemo.com/tm-558-klassy-cafe
                     <div class="card-body">
                         <h4 class="card-title">Order form</h4>
                         <hr>
-                        <form method="post" action="{{ url('/uploadfood') }}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <label for="exampleInputUsername1">Name</label>
-                                <input type="text" name="name" placeholder="Write a Name" required class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Phone</label>
-                                <input class="form-control" type="text" name="phone" placeholder="Write a Phone"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Address</label>
-                                <input type="text" class="form-control" name="address" placeholder="Write a Address"
-                                    required>
-                            </div>
 
-                            <button type="submit" class="btn btn-primary mr-2">Order Submit</button>
 
-                            <button id="close" type="submit" class="btn btn-danger mr-2">Cancel</button>
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Name</label>
+                            <input type="text" name="name" placeholder="Write a Name" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Phone</label>
+                            <input class="form-control" type="text" name="phone" placeholder="Write a Phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Address</label>
+                            <input type="text" class="form-control" name="address" placeholder="Write a Address"
+                                required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mr-2">Order Submit</button>
+
+                        <button id="close" type="submit" class="btn btn-danger mr-2">Cancel</button>
 
                         </form>
 
