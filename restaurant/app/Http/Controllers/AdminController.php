@@ -54,4 +54,29 @@ class AdminController extends Controller
         $data->delete();
         return redirect()->back();
     }
+
+    // get the user edit id and redirect it
+    public function updateview($id)
+    {
+        $data = Food::find($id);
+        return view('admin.updateview', compact('data'));
+    }
+
+
+    // update menu
+
+    public function update(Request $request, $id)
+    {
+        $data = Food::find($id);
+        $image = $request->image;
+        $imagename = time() . '.' . $image->getClientOriginalExtension();
+        $request->image->move('foodimage', $imagename);
+
+        $data->image = $imagename;
+        $data->title = $request->title;
+        $data->price = $request->price;
+        $data->descripition = $request->descripition;
+        $data->save();
+        return redirect()->back();
+    }
 }
