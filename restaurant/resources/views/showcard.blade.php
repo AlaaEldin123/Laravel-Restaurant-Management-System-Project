@@ -12,6 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
     <title>Klassy Cafe - Restaurant HTML Template</title>
     <!--
 
@@ -145,7 +149,7 @@ https://templatemo.com/tm-558-klassy-cafe
 
 
 
-    <div class="container " id="top">
+    <div class="container ">
 
         <div class="row">
             <div class="col-md-12">
@@ -195,6 +199,11 @@ https://templatemo.com/tm-558-klassy-cafe
 
                             </tbody>
                         </table>
+
+
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" id="order">Order Now</button>
                     </div>
                 </div>
             </div>
@@ -205,9 +214,63 @@ https://templatemo.com/tm-558-klassy-cafe
 
 
 
+    <div class="container" id="appear" style="display: none">
+
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Order form</h4>
+                        <hr>
+                        <form method="post" action="{{ url('/uploadfood') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Name</label>
+                                <input type="text" name="name" placeholder="Write a Name" required class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Phone</label>
+                                <input class="form-control" type="text" name="phone" placeholder="Write a Phone"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Address</label>
+                                <input type="text" class="form-control" name="address" placeholder="Write a Address"
+                                    required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mr-2">Order Submit</button>
+
+                            <button id="close" type="submit" class="btn btn-danger mr-2">Cancel</button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
 
+    <script>
+        $("#order").click(
+            function() {
+                $("#appear").show();
+            }
+
+
+        );
+
+        $("#close").click(
+            function() {
+                $("#appear").hide();
+            }
+
+
+        );
+    </script>
 
 
     <script src="assets/js/jquery-2.1.0.min.js"></script>
