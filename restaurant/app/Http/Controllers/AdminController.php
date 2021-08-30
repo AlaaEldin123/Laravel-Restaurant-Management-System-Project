@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Food;
 use App\Models\Foodchef;
+use App\Models\Order;
 use App\Models\Reservation;
 use App\Models\User;
 use Dotenv\Loader\Resolver;
@@ -162,5 +163,13 @@ class AdminController extends Controller
         $data = Foodchef::findOrFail($id);
         $data->delete();
         return redirect()->back();
+    }
+
+
+    //show orders
+    public function orders()
+    {
+        $data = Order::all();
+        return view('admin.orders', compact('data'));
     }
 }
