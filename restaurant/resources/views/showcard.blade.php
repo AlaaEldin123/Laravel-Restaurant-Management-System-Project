@@ -159,7 +159,7 @@ https://templatemo.com/tm-558-klassy-cafe
                                     <th>Food Name</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
-
+                                    <th>Action</th>
                                 </tr>
 
                             </thead>
@@ -170,7 +170,7 @@ https://templatemo.com/tm-558-klassy-cafe
 
 
                                     <tr>
-                                        <th scope="row">{{ $data->title }}</th>
+                                        <td scope="row">{{ $data->title }}</td>
                                         <td>{{ $data->price }}</td>
 
                                         <td>{{ $data->quanity }}</td>
@@ -178,7 +178,19 @@ https://templatemo.com/tm-558-klassy-cafe
 
 
                                     </tr>
+
+
                                 @endforeach
+
+                                @foreach ($data2 as $data2)
+                                    <tr style="position: relative; top:-76px; left:850px">
+                                        <td><a href="{{ url('/remove', $data2->id) }}"
+                                                class="btn btn-danger">Remove</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
 
 
                             </tbody>
