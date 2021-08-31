@@ -51,13 +51,35 @@
 
                                 </tbody>
                             </table>
+
                         </div>
+
                     </div>
+                    <form action="{{ url('/search') }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <input style="color: black" placeholder="search" name="search" type="text">
+                            <button type="submit" class="btn btn-success">Search</button>
+                        </div>
+
+                    </form>
                 </div>
             </div>
 
         </div>
     </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="col-md-12">
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     @include('admin.adminscript')
 </body>
 
